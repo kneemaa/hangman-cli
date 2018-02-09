@@ -3,9 +3,9 @@ var Letter = function(letter){
 	this.guessed = false;
 	this.printCheck = function () {
 		if(this.guessed === true) {
-			console.log(this.letter);
+			return this.letter;
 		} else {
-			console.log("_");
+			return "_";
 		}
 	};
 	this.guessCheck = function (guess) {
