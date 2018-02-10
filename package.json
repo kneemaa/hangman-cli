@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/smalldoorman/hangman-cli#readme",
   "dependencies": {
-    "inquirer": "^5.1.0"
+    "clear": "0.0.1",
+    "inquirer": "^5.1.0",
+    "validator": "^9.4.0"
   }
 }

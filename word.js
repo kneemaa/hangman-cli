@@ -1,5 +1,4 @@
 var Letter = require("./letter.js");
-var blankBuilder = "";
 
 var Word = function(word) {
 	this.wordArray = [];
@@ -9,27 +8,15 @@ var Word = function(word) {
 			var uniqueLetter = new Letter(characters);
 			this.wordArray.push(uniqueLetter);
 		}
-		//console.log(this.wordArray);
 	};
 	this.letterCheck = function(guess){
-		var blank = "";
+		var blankBuilder = "";
 		for ( i = 0; i < this.wordArray.length; i++){
 			this.wordArray[i].guessCheck(guess);
-			blank += this.wordArray[i].printCheck();
-			
+			blankBuilder += this.wordArray[i].printCheck();
 		}
-		return blank;
+		return blankBuilder;
 	}
 };
-
-
-/*var nema = new Word("nema");
-
-
-nema.printLetters();
-nema.letterCheck("a");
-nema.letterCheck("b");
-nema.letterCheck("n");*/
-//nema.printLetters();
 
 module.exports = Word;
