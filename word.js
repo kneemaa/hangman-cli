@@ -7,22 +7,29 @@ var Word = function(word) {
 		for (i = 0; i < word.length; i++){
 			var characters = word[i];
 			var uniqueLetter = new Letter(characters);
-			blankBuilder += uniqueLetter.printCheck();
-			blankBuilder += " ";
+			this.wordArray.push(uniqueLetter);
 		}
+		//console.log(this.wordArray);
 	};
-	this.letterCheck = function(word, guess){
-		/*var check = new Letter().guessCheck(guess);*/
-		console.log();
+	this.letterCheck = function(guess){
+		var blank = "";
+		for ( i = 0; i < this.wordArray.length; i++){
+			this.wordArray[i].guessCheck(guess);
+			blank += this.wordArray[i].printCheck();
+			
+		}
+		return blank;
 	}
 };
 
 
-var nema = new Word("nema");
+/*var nema = new Word("nema");
+
 
 nema.printLetters();
+nema.letterCheck("a");
+nema.letterCheck("b");
+nema.letterCheck("n");*/
+//nema.printLetters();
 
-console.log(blankBuilder);
-
-nema.guessCheck("a");
-nema.printLetters();
+module.exports = Word;
