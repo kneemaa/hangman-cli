@@ -18,7 +18,7 @@ function randomWordPicker(){
 }
 
 function startGame(){
-	console.log(`There are ${remainingGuesses} guesses left\nYou've Guessed: ${guessedLetters}`);
+	console.log(`There are ${remainingGuesses} guesses left\nYou've Guessed: ${guessedLetters}\n\n`);
 	if((gameState !== selectedWord) && remainingGuesses > 0){
 		inquirer.prompt([{
 			name: "guess",
@@ -37,13 +37,13 @@ function startGame(){
 					console.log(vocab.letterCheck());
 					return false;
 				} else {
-					console.log(vocab.letterCheck());
 					return true;
 			}
 		}}]).then(function (input){
-			guessedLetters.push(input.guess);
-			console.log(`Guess: ${input.guess}`);
-			gameState = vocab.letterCheck(input.guess);
+			var char = input.guess.toLowerCase();
+			guessedLetters.push(char);
+			console.log(`\n\nGuess: ${char}`);
+			gameState = vocab.letterCheck(char);
 			console.log(gameState);
 			remainingGuesses--;
 			startGame();
@@ -52,6 +52,7 @@ function startGame(){
 		console.log("\n\n\n\nYou ran out of guesses, lets start over.\n\n\n\n");
 		setTimeout(resetGame, 2000);
 	}else {
+		clear();
 		console.log(`
 		Good Job! The word was ${selectedWord}!\n
 		Lets play again!\n\n`)
@@ -62,7 +63,7 @@ function startGame(){
 
 function resetGame(){
 	remainingGuesses = 10;
-	var guessedLetters = [];
+	guessedLetters = [];
 	randomWordPicker();
 	vocab.printLetters();
 	console.log(vocab.letterCheck());
@@ -71,7 +72,7 @@ function resetGame(){
 
 function printHint(){
 	vocab.printLetters();
-	console.log(vocab.letterCheck());
+	console.log(`\n\n${vocab.letterCheck()}`);
 }
 
 randomWordPicker();
